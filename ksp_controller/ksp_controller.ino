@@ -31,22 +31,22 @@ Adafruit_MCP23008 mcp;
 const int keyedSwitch = 4;  // Main switch
 const int abortButton = 1;
 const int stageButton = 2;
-const int rcsButton = 7;
-const int sasButton = 8;
-const int lightsButton = 9;
-const int gearButton = 10;
-const int brakesButton = 11;
-const int cutThrottleButton = 12;
+const int cutThrottleButton = A0;
+const int brakesButton = A1;
+const int gearButton = A2;
+const int lightsButton = A3;
+const int sasButton = A4;
+const int rcsButton = A5;
 
 // MCP23008 pins
-const int cameraModeButton = 7;
-const int cameraViewButton = 6;
-const int cameraResetButton = 5;
-const int flightUIButton = 4;
-const int flightLogButton = 3;
-const int orbitalMapButton = 2;
-const int warpMinusButton = 1;
 const int warpPlusButton = 0;
+const int warpMinusButton = 1;
+const int orbitalMapButton = 2;
+const int flightLogButton = 3;
+const int flightUIButton = 4;
+const int cameraResetButton = 5;
+const int cameraViewButton = 6;
+const int cameraModeButton = 7;
 
 // 3x4 Matrix Keypad
 const byte ROWS = 4; // Four rows
@@ -57,8 +57,9 @@ char keys[ROWS][COLS] = {
   {'7','8','9'},
   {'*','0','#'}
 };
-byte rowPins[ROWS] = {8, 7, 6, 5}; // Connect to the row pinouts of the keypad
-byte colPins[COLS] = {4, 3, 2}; // Connect to the column pinouts of the keypad
+
+byte rowPins[ROWS] = {12, 11, 10, 9}; // Connect to the row pinouts of the keypad
+byte colPins[COLS] = {8, 7, 6}; // Connect to the column pinouts of the keypad
 
 Keypad keypad = Keypad( makeKeymap(keys), rowPins, colPins, ROWS, COLS );
 
@@ -100,6 +101,9 @@ void setup() {
   mcp.pullUp(cameraViewButton, HIGH);
   mcp.pinMode(cameraModeButton, INPUT);
   mcp.pullUp(cameraModeButton, HIGH);
+  
+  // 3x4 matrix keypad pins
+  
 }
 
 void loop() {
