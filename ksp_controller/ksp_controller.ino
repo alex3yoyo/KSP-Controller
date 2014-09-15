@@ -1,22 +1,22 @@
 /* @file ksp_controller.ino
 || @version 1.0
-|| @author alex3yoyo
-|| @contact alex3yoyo@gmail.com
-|| 
-|| http://github.com/alex3yoyo/KSP-Controller/
-|| 
-|| Copyright (c) 2014 alex3yoyo
-|| 
+|| @author Alexander Coll
+|| @contact me@alexcoll.com
+||
+|| http://github.com/alexcoll/KSP-Controller/
+||
+|| Copyright (c) 2014 Alexander Coll
+||
 || This program is free software: you can redistribute it and/or modify
 || it under the terms of the GNU General Public License as published by
 || the Free Software Foundation, either version 3 of the License, or
 || (at your option) any later version.
-|| 
+||
 || This program is distributed in the hope that it will be useful,
 || but WITHOUT ANY WARRANTY; without even the implied warranty of
 || MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 || GNU General Public License for more details.
-|| 
+||
 || You should have received a copy of the GNU General Public License
 || along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
@@ -93,7 +93,7 @@ void setup() {
   pinMode(gauge0Pin, OUTPUT);
   pinMode(gauge1Pin, OUTPUT);
   pinMode(gauge2Pin, OUTPUT);
-  
+
   // MCP23008 pins
   // Buttons connected to the I/O expander use functions from the Adafruit_MCP23008 library
   mcp.begin();
@@ -109,19 +109,19 @@ void update_gauges() {
     int valueSurfaceVelocity = Serial.parseInt();
     int valueObritalVelocity = Serial.parseInt();
     int valueVerticalVelocity = Serial.parseInt();
-    
+
     gauge0Value = Serial.parseInt(); //Looks for the next valid integer in the serial stream
     gauge1Value = Serial.parseInt();
     gauge2Value = Serial.parseInt();
-  }  
+  }
   // look for the newline
   if (Serial.read() == '\n') {
     // constrain the values to 0 - 255
     gauge0Value = constrain(gauge0Pin, 0, 255);
     gauge1Value = constrain(gauge1Pin, 0, 255);
     gauge2Value = constrain(gauge2Pin, 0, 255);
-    
-    // Write the values to the display 
+
+    // Write the values to the display
     analogWrite(gauge0Pin, gauge0Value);
     analogWrite(gauge1Pin, gauge1Value);
     analogWrite(gauge2Pin, gauge2Value);
@@ -193,7 +193,7 @@ void loop() {
           Keyboard.write('x');
           delay(delayBetweenPressess);
         }
-        
+
         // MCP23008 pins
         if ((mcp.digitalRead(warpPlusButton) == LOW)) {
           Serial.println("Warp increased");
@@ -230,7 +230,7 @@ void loop() {
           Keyboard.write('c');
           delay(delayBetweenPressess);
         }
-        
+
         // 3x4 matrix keypad for toggling action groups
         int keypadKey = keypad.getKey();
         if (keypadKey) {

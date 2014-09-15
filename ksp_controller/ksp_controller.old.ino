@@ -1,22 +1,22 @@
 /* @file ksp_controller.ino
 || @version 1.0
-|| @author alex3yoyo
-|| @contact alex3yoyo@gmail.com
-|| 
-|| http://github.com/alex3yoyo/KSP-Controller/
-|| 
-|| Copyright 2014 alex3yoyo
-|| 
+|| @author Alexander Coll
+|| @contact me@alexcoll.com
+||
+|| http://github.com/alexcoll/KSP-Controller/
+||
+|| Copyright 2014 Alexander Coll
+||
 || This program is free software: you can redistribute it and/or modify
 || it under the terms of the GNU General Public License as published by
 || the Free Software Foundation, either version 3 of the License, or
 || (at your option) any later version.
-|| 
+||
 || This program is distributed in the hope that it will be useful,
 || but WITHOUT ANY WARRANTY; without even the implied warranty of
 || MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 || GNU General Public License for more details.
-|| 
+||
 || You should have received a copy of the GNU General Public License
 || along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
@@ -78,7 +78,7 @@ void setup() {
   for(int i = 0; i < sizeof(arduinoPins); i++) {
     pinMode(arduinoPins[i], INPUT_PULLUP);
   }
-  
+
   // MCP23008 pins
   // Buttons connected to the I/O expander use functions from the Adafruit_MCP23008 library
   mcp.begin();
@@ -146,7 +146,7 @@ void loop() {
           Keyboard.write('x');
           delay(delayBetweenPressess);
         }
-        
+
         // MCP23008 pins
         if ((mcp.digitalRead(warpPlusButton) == LOW)) {
           Serial.println("Warp increased");
@@ -188,7 +188,7 @@ void loop() {
           Keyboard.write('c');
           delay(delayBetweenPressess);
         }
-        
+
         // 3x4 matrix keypad for toggling action groups
         int keypadKey = keypad.getKey();
         if (keypadKey) {
